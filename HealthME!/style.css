@@ -1,0 +1,73 @@
+/* Styles for the page */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    height: 100%;
+    background-color: #f4f4f4;
+  }
+  
+  /* Header styles */
+  .header {
+    background-color: peachpuff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 48px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+  
+  .left-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .nav-container {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .nav-link, .contact-link {
+    text-decoration: none;
+    color: #000;
+    font-size: 18px;
+    font-weight: 500;
+    position: relative;
+  }
+  
+  .nav-link::after, .contact-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0;
+    height: 2px;
+    background-color: #000;
+    transition: width 0.3s ease;
+  }
+  
+  .nav-link:hover::after, .contact-link:hover::after {
+    width: 100%;
+  }
+  
+  /* Hero section styles */
+  .hero-section {
+    padding-top: 50px; /* Offset for the fixed header */
+    display: flex;
+    flex-direction: column; /* Allow content to stack vertically */
+    min-height: 90vh;
+    background-color: #f4f4f4;
+    width: 100%; /* Ensure the section spans the full width */
+  }
+  
+  /* Root container for full-width content */
+  #root {
+    width: 100%; /* Take up the full width of the viewport */
+    margin: 0;
+    padding: 0;
+  }
+  

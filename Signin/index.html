@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="signup-container">
+        <div class="signup-content">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/51da73836c3f0a194ffe600c59e63c948ff2ced89d017eb989d6d304599eafe5?placeholderIfAbsent=true&apiKey=e6e279f9e06842139b3f7c01a7502bdc" alt="" class="background-image" />
+            <div class="signup-wrapper">
+                <div class="signup-row">
+                    <div class="image-column">
+                        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/73ff847635b56252cd4b557544242b937966c63042d4fc3ef84b738cc2c31f5f?placeholderIfAbsent=true&apiKey=e6e279f9e06842139b3f7c01a7502bdc" alt="Profile image" class="profile-image" />
+                    </div>
+                    <div class="form-column">
+                        <form class="signup-form" id="signupForm">
+                            <h1 class="form-title">SIGN UP</h1>
+                            <label for="email" class="visually-hidden">Email/Username</label>
+                            <input type="text" id="email" class="form-input" placeholder="Email/Username" required aria-required="true" />
+                            <label for="password" class="visually-hidden">Password</label>
+                            <input type="password" id="password" class="form-input" placeholder="Password" required aria-required="true" />
+                            <label for="repassword" class="visually-hidden">Re-Password</label>
+                            <input type="password" id="repassword" class="form-input" placeholder="Re-Password" required aria-required="true" />
+                            <div class="login-link-wrapper">
+                                <p class="login-text">Have an account?</p>
+                                <a href="../Login/index.html" class="login-link">Login</a>
+                            </div>
+                            <button type="button" class="signup-button" onclick="validateSignupForm()">
+                                Sign Up
+                            </button>
+                        </form>
+                        <p id="error-message" style="color: red; display: none;">Please fill in all fields and ensure passwords match.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function validateSignupForm() {
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+            var repassword = document.getElementById('repassword').value;
+            var errorMessage = document.getElementById('error-message');
+            
+            // Check if all fields are filled
+            if (email === "" || password === "" || repassword === "") {
+                errorMessage.style.display = 'block'; // Show error message for missing fields
+            } else if (password !== repassword) {
+                errorMessage.style.display = 'block'; // Show error message if passwords don't match
+            } else {
+                errorMessage.style.display = 'none'; // Hide error message
+                window.location.href = '../Login/index.html'; // Navigate to login page if form is valid
+            }
+        }
+    </script>
+</body>
+</html>

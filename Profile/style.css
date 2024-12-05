@@ -1,0 +1,116 @@
+.hero-section {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically center content */
+    align-items: center; /* Horizontally center content */
+    overflow: hidden;
+    width: 100%;
+    max-width: 1920px;
+    margin: 0 auto;
+    height: 100vh; /* Full viewport height */
+    padding-top: 100px; /* Add padding to the top to make space for header */
+}
+
+.header {
+    background-color: #d9d9d9;
+    display: flex;
+    justify-content: flex-start; /* Align items to the left */
+    align-items: center;
+    padding: 31px 48px;
+    font-size: 36px;
+    font-weight: 400;
+    position: fixed; /* Keep the header fixed at the top */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10; /* Ensure header stays on top */
+}
+
+.logo {
+    aspect-ratio: 1.1;
+    object-fit: contain;
+    object-position: center;
+    width: 79px;
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Add some space between links */
+}
+
+.nav-link, .contact-link {
+    text-decoration: none;
+    color: #000;
+    position: relative;
+}
+
+.nav-link::after, .contact-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #000;
+    transform: scaleX(0);
+    transition: transform 0.3s ease-in-out;
+}
+
+.nav-link:hover::after,
+.nav-link:focus::after,
+.contact-link:hover::after,
+.contact-link:focus::after {
+    transform: scaleX(1);
+}
+
+.profile-picture {
+    aspect-ratio: 1.08;
+    object-fit: contain;
+    width: 220px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 50%;
+    margin-top: 20px; /* Adjusted margin for centering */
+}
+
+.profile-name {
+    font-size: 48px;
+    margin-top: 32px;
+    text-align: center; /* Center the text */
+}
+
+.logout-button {
+    border-radius: 39px;
+    background-color: rgba(255, 101, 101, 0.87);
+    margin-top: 20px; /* Adjusted margin for centering */
+    width: 211px;
+    font-size: 40px;
+    padding: 20px 36px 40px;
+    border: none;
+    cursor: pointer;
+    text-align: center; /* Center the button text */
+}
+
+@media (max-width: 991px) {
+    .header {
+        padding: 20px;
+    }
+
+    .contact-link {
+        max-width: 100%;
+    }
+
+    .profile-picture {
+        margin-top: 40px;
+    }
+
+    .profile-name {
+        font-size: 40px;
+    }
+
+    .logout-button {
+        margin-top: 40px;
+        padding: 20px;
+    }
+}

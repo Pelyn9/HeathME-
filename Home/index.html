@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section class="hero-section">
+        <!-- Header -->
+        <header class="header">
+            <div class="left-header">
+                <a href="../Profile/index.html" class="icon-link">
+                    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/14d667f455694d8ae2a1a7fa329fa0229cac34ba60d63c3fcf7e2e30f0751a52?placeholderIfAbsent=true&apiKey=e6e279f9e06842139b3f7c01a7502bdc" 
+                         alt="Iconography illustration" 
+                         class="iconography-image" loading="lazy">
+                </a>
+                <a href="#home" class="nav-link">Home</a>
+                <a href="../Contact/index.html" class="contact-link">Support</a>
+                <a href="../HealthME!/index.html" class="nav-link">HealthMe</a>
+            </div>
+        </header>
+
+        <!-- Stress & Energy Tracker -->
+        <div class="stress-energy-tracker-container">
+            <h2>Stress & Energy Level Tracker</h2>
+            <div class="slider-container">
+                <label for="stress-level">How stressed are you? (1-10)</label>
+                <input type="range" id="stress-level" min="1" max="10" value="5" oninput="updateStressAdvice()">
+                <span id="stress-value">5</span>
+            </div>
+            <div class="slider-container">
+                <label for="energy-level">How energetic are you? (1-10)</label>
+                <input type="range" id="energy-level" min="1" max="10" value="5" oninput="updateEnergyAdvice()">
+                <span id="energy-value">5</span>
+            </div>
+            <div class="advice-container">
+                <p id="stress-advice"></p>
+                <p id="energy-advice"></p>
+            </div>
+        </div>
+
+        <!-- How do you feel today -->
+        <h2 class="feel-today-title">How do you feel today?</h2>
+
+        <!-- Emotion Boxes -->
+        <div class="emotion-boxes">
+            <div class="emotion-box" data-emotion="happy">😊<span>Happy</span></div>
+            <div class="emotion-box" data-emotion="sad">😢<span>Sad</span></div>
+            <div class="emotion-box" data-emotion="anxious">😰<span>Anxious</span></div>
+            <div class="emotion-box" data-emotion="angry">😡<span>Angry</span></div>
+            <div class="emotion-box" data-emotion="depressed">😞<span>Depressed</span></div>
+            <div class="emotion-box" data-emotion="stressed">😤<span>Stressed</span></div>
+        </div>
+
+        <!-- Tasks Section -->
+        <div class="tasks-section"></div>
+
+        <!-- Satisfaction Question -->
+        <div class="satisfaction-question-container" style="display:none;">
+            <div class="satisfaction-question">
+                <p>Are you satisfied with the tasks completed?</p>
+                <button id="yes-btn">Yes</button>
+                <button id="no-btn">No</button>
+                <p id="satisfaction-response"></p>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

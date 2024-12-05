@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section class="hero-section">
+        <!-- Header -->
+        <header class="header">
+            <div class="left-header">
+                <a href="../Profile/index.html">
+                    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/14d667f455694d8ae2a1a7fa329fa0229cac34ba60d63c3fcf7e2e30f0751a52?placeholderIfAbsent=true&apiKey=e6e279f9e06842139b3f7c01a7502bdc" 
+                         alt="Iconography illustration" 
+                         class="iconography-image" loading="lazy">
+                </a>
+                <nav class="nav-container">
+                    <a href="../Home/index.html" class="nav-link">Home</a>
+                    <a href="#Contact" class="contact-link">Support</a>
+                    <a href="../HealthME!/index.html" class="nav-link">HealthMe</a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Chat Section -->
+        <section class="chat-section">
+            <div class="contact-list">
+                <!-- Contact header with Add icon and Search bar -->
+                <div class="contact-header">
+                    <input type="text" class="search-bar" placeholder="Search contacts...">
+                    <button id="add-contact" class="add-contact-btn">+</button>
+                </div>
+                <div class="contacts">
+                </div>
+            </div>
+
+            <div class="chat-container">
+                <div class="chat-box">
+                    <div class="message-box" id="message-box"></div>
+                    <div class="chat-input-area">
+                        <input type="text" id="user-input" placeholder="Type your message..." class="chat-input">
+                        <button id="send-button" class="send-button">Send</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <script>
+        const sendButton = document.getElementById('send-button');
+        const messageBox = document.getElementById('message-box');
+        const userInput = document.getElementById('user-input');
+        const addContactBtn = document.getElementById('add-contact');
+        const contactsContainer = document.querySelector('.contacts');
+
+        let currentUser = null;
+
+        sendButton.addEventListener('click', () => {
+            const userMessage = userInput.value;
+            if (userMessage) {
+                appendMessage('You', userMessage);
+                userInput.value = '';
+            }
+        });
+
+        function appendMessage(sender, message) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message');
+            messageElement.classList.add(sender.toLowerCase());
+          
+            // Get the current time and format it
+            const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+          
+            // Create the message with the time outside the message box
+            messageElement.innerHTML = `
+                <span class="message-time">${currentTime}</span>
+                <span class="message-text">${message}</span>
+            `;
+            messageBox.prepend(messageElement); // Add new message to the bottom (reverse direction)
+          }
+
+        // Open Chat with selected user
+        function openChat(userName) {
+            currentUser = userName;
+            document.querySelector('.chat-box').style.display = 'flex';
+
+            // Clear the existing messages in the chat box
+            messageBox.innerHTML = '';
+        }
+
+        // Add new contact to the list
+        addContactBtn.addEventListener('click', () => {
+            const userName = prompt("Enter the new contact's name:");
+            if (userName) {
+                const contactDiv = document.createElement('div');
+                contactDiv.classList.add('contact');
+                contactDiv.setAttribute('onclick', `openChat('${userName}')`);
+                contactDiv.innerHTML = `<img src="https://via.placeholder.com/50" alt="${userName}" class="contact-avatar"><p>${userName}</p>`;
+                contactsContainer.appendChild(contactDiv);
+            }
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
