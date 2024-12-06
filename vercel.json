@@ -1,0 +1,28 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "login/index.html",
+        "use": "@vercel/static-build"
+      },
+      {
+        "src": "home/index.html",
+        "use": "@vercel/static-build"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/",
+        "dest": "/login/index.html"
+      },
+      {
+        "src": "/login",
+        "dest": "/login/index.html"
+      },
+      {
+        "src": "/home",
+        "dest": "/home/index.html"
+      }
+    ]
+  }
+  
