@@ -18,33 +18,35 @@
                 </a>
                 <a href="#home" class="nav-link">Home</a>
                 <a href="../Contact/index.html" class="contact-link">Support</a>
-                <a href="../HealthME!/index.html" class="nav-link">HealthMe</a>
+                <a href="https://cdn.botpress.cloud/webchat/v2.2/shareable.html?configUrl=https://files.bpcontent.cloud/2024/12/01/02/20241201022934-Z6K7CN2U.json" class="nav-link">HealthMe</a>
             </div>
         </header>
 
-        <!-- Stress & Energy Tracker -->
-        <div class="stress-energy-tracker-container">
-            <h2>Stress & Energy Level Tracker</h2>
-            <div class="slider-container">
-                <label for="stress-level">How stressed are you? (1-10)</label>
-                <input type="range" id="stress-level" min="1" max="10" value="5" oninput="updateStressAdvice()">
-                <span id="stress-value">5</span>
-            </div>
-            <div class="slider-container">
-                <label for="energy-level">How energetic are you? (1-10)</label>
-                <input type="range" id="energy-level" min="1" max="10" value="5" oninput="updateEnergyAdvice()">
-                <span id="energy-value">5</span>
-            </div>
-            <div class="advice-container">
-                <p id="stress-advice"></p>
-                <p id="energy-advice"></p>
+           <!-- Stress & Energy Tracker -->
+           <div class="stress-energy-tracker-wrapper">
+            <div class="stress-energy-tracker-container">
+                <h2>Stress & Energy Level Tracker</h2>
+                <div class="slider-container">
+                    <label for="stress-level">How stressed are you? (1-10)</label>
+                    <input type="range" id="stress-level" min="1" max="10" value="5" oninput="updateStressAdvice()">
+                    <span id="stress-value">5</span>
+                </div>
+                <div class="slider-container">
+                    <label for="energy-level">How energetic are you? (1-10)</label>
+                    <input type="range" id="energy-level" min="1" max="10" value="5" oninput="updateEnergyAdvice()">
+                    <span id="energy-value">5</span>
+                </div>
+                <div class="advice-container">
+                    <p id="stress-advice"></p>
+                    <p id="energy-advice"></p>
+                </div>
             </div>
         </div>
 
         <!-- How do you feel today -->
+                <!-- Emotion Boxes -->
+        <div class="emotion-section">
         <h2 class="feel-today-title">How do you feel today?</h2>
-
-        <!-- Emotion Boxes -->
         <div class="emotion-boxes">
             <div class="emotion-box" data-emotion="happy">😊<span>Happy</span></div>
             <div class="emotion-box" data-emotion="sad">😢<span>Sad</span></div>
@@ -53,19 +55,75 @@
             <div class="emotion-box" data-emotion="depressed">😞<span>Depressed</span></div>
             <div class="emotion-box" data-emotion="stressed">😤<span>Stressed</span></div>
         </div>
+    </div>
 
-        <!-- Tasks Section -->
-        <div class="tasks-section"></div>
+        <!-- Progress Circle (Initially hidden) -->
+        <div class="progress-circle-container" style="display: none;">
+            <div class="progress-circle-background"></div>
+            <div class="progress-circle"></div>
+            <div class="progress-circle-text">0%</div>
+        </div>
 
-        <!-- Satisfaction Question -->
-        <div class="satisfaction-question-container" style="display:none;">
-            <div class="satisfaction-question">
-                <p>Are you satisfied with the tasks completed?</p>
-                <button id="yes-btn">Yes</button>
-                <button id="no-btn">No</button>
-                <p id="satisfaction-response"></p>
+        <!-- Tasks Section (Initially hidden) -->
+        <div class="tasks-section" style="display: none;">
+            <h2 class="tasks-caption">Things to Do</h2>
+            <div class="tasks-container">
+                <div class="tasks-left">
+                    <div class="task-item">
+                        Task 1 <input type="checkbox" class="task-checkbox">
+                    </div>
+                    <div class="task-item">
+                        Task 2 <input type="checkbox" class="task-checkbox">
+                    </div>
+                    <div class="task-item">
+                        Task 3 <input type="checkbox" class="task-checkbox">
+                    </div>
+                    <div class="task-item">
+                        Task 4 <input type="checkbox" class="task-checkbox">
+                    </div>
+                    <div class="task-item">
+                        Task 5 <input type="checkbox" class="task-checkbox">
+                    </div>
+                </div>
+
+                <div class="tasks-right">
+                    <div class="task-item">
+                        Task 6 <input type="checkbox" class="task-checkbox">
+                    </div>
+                    <div class="task-item">
+                        Task 7 <input type="checkbox" class="task-checkbox">
+                    </div>
+                    <div class="task-item">
+                        Task 8 <input type="checkbox" class="task-checkbox">
+                    </div>
+                    <div class="task-item">
+                        Task 9 <input type="checkbox" class="task-checkbox">
+                    </div>
+                    <div class="task-item">
+                        Task 10 <input type="checkbox" class="task-checkbox">
+                    </div>
+                </div>
             </div>
         </div>
+
+     
+
+        <!-- Satisfaction Question -->
+        <div class="satisfaction-question-container" id="satisfaction-question">
+            <h2>Are you satisfied with the tasks completed?</h2>
+            <div class="satisfaction-question">
+                <button id="yes-button">Yes</button>
+                <button id="no-button">No</button>
+            </div>
+        </div>
+        <div class="cheer-up-message" style="display: none;">
+            <h2>Remember, you're amazing and loved! Keep smiling 😊</h2>
+        </div>
+        
+        <div class="bottom-message">
+            Hope we make you feel better :)
+        </div>
+        
     </section>
 
     <script src="script.js"></script>

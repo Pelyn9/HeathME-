@@ -1,116 +1,192 @@
-.hero-section {
-    background-color: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Vertically center content */
-    align-items: center; /* Horizontally center content */
-    overflow: hidden;
-    width: 100%;
-    max-width: 1920px;
-    margin: 0 auto;
-    height: 100vh; /* Full viewport height */
-    padding-top: 100px; /* Add padding to the top to make space for header */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  height: 100%;
+  background-color: #f4f4f4;
 }
 
+/* Header styles */
 .header {
-    background-color: #d9d9d9;
-    display: flex;
-    justify-content: flex-start; /* Align items to the left */
-    align-items: center;
-    padding: 31px 48px;
-    font-size: 36px;
-    font-weight: 400;
-    position: fixed; /* Keep the header fixed at the top */
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 10; /* Ensure header stays on top */
+  background-color: peachpuff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 48px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
-.logo {
-    aspect-ratio: 1.1;
-    object-fit: contain;
-    object-position: center;
-    width: 79px;
+.left-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 .nav-container {
-    display: flex;
-    align-items: center;
-    gap: 20px; /* Add some space between links */
+  display: flex;
+  gap: 20px;
 }
 
 .nav-link, .contact-link {
-    text-decoration: none;
-    color: #000;
-    position: relative;
+  text-decoration: none;
+  color: #000;
+  font-size: 18px;
+  font-weight: 500;
+  position: relative;
 }
 
 .nav-link::after, .contact-link::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background-color: #000;
-    transform: scaleX(0);
-    transition: transform 0.3s ease-in-out;
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background-color: #000;
+  transition: width 0.3s ease;
 }
 
-.nav-link:hover::after,
-.nav-link:focus::after,
-.contact-link:hover::after,
-.contact-link:focus::after {
-    transform: scaleX(1);
+.nav-link:hover::after, .contact-link:hover::after {
+  width: 100%;
 }
 
+/* Profile Section */
+.profile-section {
+  display: flex; /* Use Flexbox for side-by-side layout */
+  align-items: flex-start; /* Align items at the top */
+  gap: 40px; /* Space between the picture and the form */
+  padding: 190px;
+  background-color: #fff;
+  border-radius: 10px;
+  width: 70%;
+  margin: 50px auto;
+}
+
+/* Profile Picture */
 .profile-picture {
-    aspect-ratio: 1.08;
-    object-fit: contain;
-    width: 220px;
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 50%;
-    margin-top: 20px; /* Adjusted margin for centering */
+  display: flex;
+  flex-direction: column; /* Stack the image and input vertically */
+  align-items: center; /* Center align the content */
+  gap: 15px;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  margin-top: 90px; /* Add a bit of space between the heading and the picture */
+  margin-left: -210px; /* Adjust horizontal position */
 }
 
-.profile-name {
-    font-size: 48px;
-    margin-top: 32px;
-    text-align: center; /* Center the text */
+.profile-picture:hover {
+  transform: scale(1.1);
 }
 
-.logout-button {
-    border-radius: 39px;
-    background-color: rgba(255, 101, 101, 0.87);
-    margin-top: 20px; /* Adjusted margin for centering */
-    width: 211px;
-    font-size: 40px;
-    padding: 20px 36px 40px;
-    border: none;
-    cursor: pointer;
-    text-align: center; /* Center the button text */
+/* Make the profile picture much larger */
+.profile-picture img {
+  width: 200px; /* Increase size */
+  height: 200px; /* Increase size */
+  border-radius: 50%; /* Make the image circular */
+  object-fit: cover; /* Ensure image maintains its aspect ratio */
+  border: 5px solid #ccc; /* Optional: Add border around the picture */
 }
 
-@media (max-width: 991px) {
-    .header {
-        padding: 20px;
-    }
+/* Hide the file input, but make it clickable */
+.profile-picture input {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150px;
+  height: 150px;
+  opacity: 0; /* Invisible but clickable */
+  cursor: pointer;
+}
 
-    .contact-link {
-        max-width: 100%;
-    }
+/* Form styling */
+form {
+  flex-grow: 1; /* Allow the form to take remaining space */
+  padding: 20px; /* Add some padding inside the form */
+  border: 5px solid #ccc; /* Add a border around the entire form */
+  border-radius: 8px; /* Optional: rounded corners */
+  background-color: #f9f9f9; /* Slightly different background for the form */
+}
 
-    .profile-picture {
-        margin-top: 40px;
-    }
+/* Container for label and input */
+form .input-container {
+  display: flex; /* Use flexbox for horizontal layout */
+  align-items: center; /* Align the label and input vertically */
+  margin-bottom: 12px; /* Space between form fields */
+  border-bottom: 0px solid #ccc; /* Add a bottom border to each input-container */
+}
 
-    .profile-name {
-        font-size: 40px;
-    }
+/* Styling for the label */
+form label {
+  font-size: 20px;
+  margin-right: 10px; /* Space between label and input */
+  display: inline-block;
+  text-align: left; /* Align the label text to the left */
+  width: 200px; /* Adjust the width of the label to make them align in a straight line */
+}
 
-    .logout-button {
-        margin-top: 40px;
-        padding: 20px;
-    }
+/* Styling for the input */
+form input {
+  font-size: 20px;
+  padding: 8px;
+  border: 0px solid #ccc; /* Add a border to the input field */
+  border-radius: 4px;
+  text-align: left;
+  width: 100%; /* Make the input field fill the available space */
+}
+
+/* Button styling */
+button {
+  padding: 8px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  border: 2px solid #ccc; /* Add a border around the buttons */
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 4px;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Logout Button */
+#logout-button {
+  display: inline-block; /* Ensure it's treated like a block-level element for styling */
+  margin-top: 20px;
+  background-color: red;
+  border-radius: 4px;
+  color: white;
+  padding: 8px 16px; /* Add padding to make it look like a button */
+  text-align: center; /* Center the text */
+  text-decoration: none; /* Remove underline from the link */
+  border: 2px solid #ccc; /* Add border around the logout button */
+}
+
+#logout-button:hover {
+  background-color: darkred; /* Optional: Change color on hover */
+}
+
+/* Edit and Save Button */
+#edit-button {
+  background-color: #FFA500;
+  border: 2px solid #ccc; /* Add border around the edit button */
+}
+
+#edit-button:hover {
+  background-color: #b78e41;
+}
+
+#save-button {
+  background-color: #4CAF50;
+  border: 2px solid #ccc; /* Add border around the save button */
+}
+
+#save-button:hover {
+  background-color: #23a328;
 }

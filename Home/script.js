@@ -1,145 +1,155 @@
+const emotionBoxes = document.querySelectorAll(".emotion-box");
+const tasksSection = document.querySelector(".tasks-section");
+const progressCircleContainer = document.querySelector(".progress-circle-container");
+const stressLevelSlider = document.getElementById("stress-level");
+const energyLevelSlider = document.getElementById("energy-level");
+const stressValue = document.getElementById("stress-value");
+const energyValue = document.getElementById("energy-value");
+const stressAdvice = document.getElementById("stress-advice");
+const energyAdvice = document.getElementById("energy-advice");
+
 const tasksData = {
-    happy: ["Smile at a stranger", "Write in a gratitude journal", "Take a 10-minute walk", "Meditate for 5 minutes", "Dance to your favorite song"],
-    sad: ["Write down your thoughts", "Talk to a friend", "Watch a motivational video", "Do a breathing exercise", "Go for a walk outside"],
-    anxious: ["Do a grounding exercise", "Write 3 things you're grateful for", "Do yoga for 15 minutes", "Listen to calming music", "Talk to someone you trust"],
-    angry: ["Take deep breaths", "Count to 10 slowly", "Go for a run", "Listen to calming music", "Journaling your feelings"],
-    depressed: ["Reach out to a counselor", "Write about your emotions", "Take a short walk", "Declutter your space", "Try a new hobby"],
-    stressed: ["Do a 5-minute meditation", "Prioritize your tasks", "Take a break", "Drink water", "Spend time with a loved one"]
+    happy: ["Take a walk", "Listen to music", "Call a friend", "Do something creative", "Watch a funny show", "Exercise", "Meditate", "Eat something healthy", "Practice gratitude", "Read a book"],
+    sad: ["Journal your feelings", "Talk to someone you trust", "Listen to music", "Cry if you need to", "Take a warm bath", "Practice self-compassion", "Watch a comforting movie", "Read a book", "Rest", "Draw or paint"],
+    anxious: ["Deep breathing", "Go for a walk", "Talk to a therapist", "Write down your worries", "Do a calming activity", "Listen to calming music", "Practice mindfulness", "Drink water", "Do some stretches", "Meditate"],
+    angry: ["Take deep breaths", "Go for a run", "Talk to someone you trust", "Do a physical activity", "Write about your feelings", "Take a break", "Practice self-compassion", "Drink water", "Do some stretches", "Watch a calming video"],
+    depressed: ["Call a friend", "Talk to a therapist", "Go for a walk", "Write in a journal", "Listen to uplifting music", "Practice mindfulness", "Eat a healthy meal", "Do something creative", "Rest", "Do something kind for someone"],
+    stressed: ["Take deep breaths", "Go for a walk", "Meditate", "Take a break", "Talk to someone you trust", "Listen to music", "Practice mindfulness", "Do a relaxing activity", "Drink water", "Do some stretches"]
 };
 
-const tasksSection = document.querySelector(".tasks-section");
-const emotionBoxes = document.querySelectorAll(".emotion-box");
+// Variable to track if the satisfaction question has already been shown for the selected emotion category
+let satisfactionShown = false;
 
-// Stress & Energy Tracker Logic
-function updateStressAdvice() {
-    const stressLevel = document.getElementById("stress-level").value;
-    document.getElementById("stress-value").textContent = stressLevel;
-
-    let advice;
-    if (stressLevel <= 3) {
-        advice = "You're doing great! Keep it up.";
-    } else if (stressLevel <= 6) {
-        advice = "Consider taking a short break or doing a calming activity.";
-    } else {
-        advice = "Try relaxation techniques like deep breathing or meditation.";
-    }
-
-    document.getElementById("stress-advice").textContent = `Stress Advice: ${advice}`;
-}
-
-function updateEnergyAdvice() {
-    const energyLevel = document.getElementById("energy-level").value;
-    document.getElementById("energy-value").textContent = energyLevel;
-
-    let advice;
-    if (energyLevel >= 7) {
-        advice = "You're full of energy! Channel it into productive activities.";
-    } else if (energyLevel >= 4) {
-        advice = "Maintain your energy with a healthy snack or some exercise.";
-    } else {
-        advice = "Consider resting or doing light activities to recharge.";
-    }
-
-    document.getElementById("energy-advice").textContent = `Energy Advice: ${advice}`;
-}
-
-// Initialize stress and energy advice on page load
-document.addEventListener("DOMContentLoaded", () => {
-    updateStressAdvice();
-    updateEnergyAdvice();
-});
-
-// Add Click Event Listeners to Emotion Boxes
 emotionBoxes.forEach((box) => {
     box.addEventListener("click", () => {
         const emotion = box.dataset.emotion;
-        tasksSection.innerHTML = ""; // Clear previous tasks
+        
+        // Show a confirmation dialog asking the user if they want to explore tasks for the selected emotion
+        const shouldShowTasks = confirm(`Would you like to explore activities for feeling ${emotion}?`);
+        
+        if (shouldShowTasks) {
+            // Reset the satisfactionShown flag when a new emotion is selected
+            satisfactionShown = false;
 
-        // Create Tasks Container
-        const tasksContainer = document.createElement("div");
-        tasksContainer.classList.add("tasks-container");
+            // Remove 'selected' class from all emotion boxes
+            emotionBoxes.forEach(b => b.classList.remove('selected'));
 
-        const progressCircleContainer = document.createElement("div");
-        progressCircleContainer.classList.add("progress-circle-container");
-        progressCircleContainer.innerHTML = `
-            <div class="progress-circle-background"></div>
-            <div class="progress-circle"></div>
-            <div class="progress-circle-text">0%</div>
-        `;
-        tasksContainer.appendChild(progressCircleContainer);
+            // Add 'selected' class to the clicked emotion box
+            box.classList.add('selected');
 
-        tasksData[emotion].forEach((task, index) => {
-            const taskItem = document.createElement("div");
-            taskItem.classList.add("task-item");
-            taskItem.innerHTML = `${task} <input type="checkbox" data-task-id="${index}" />`;
-            tasksContainer.appendChild(taskItem);
-        });
+            // Show tasks and progress circle when user confirms
+            tasksSection.style.display = 'block'; // Show tasks section
+            progressCircleContainer.style.display = 'block'; // Show progress circle
 
-        tasksSection.appendChild(tasksContainer);
+            // Clear previous tasks
+            const tasksContainer = tasksSection.querySelector(".tasks-container");
+            tasksContainer.innerHTML = `<div class="tasks-left"></div><div class="tasks-right"></div>`;
 
-        // Initialize progress circle to 0%
-        updateProgressCircle();
+            const tasksLeft = tasksContainer.querySelector(".tasks-left");
+            const tasksRight = tasksContainer.querySelector(".tasks-right");
 
-        let tasksCompleted = false; // Flag to track if all tasks are completed
-
-        const taskCheckboxes = tasksContainer.querySelectorAll("input[type='checkbox']");
-
-        taskCheckboxes.forEach(checkbox => {
-            checkbox.addEventListener("change", function () {
-                const completedTasks = Array.from(taskCheckboxes).filter(cb => cb.checked).length;
-                if (completedTasks === taskCheckboxes.length) {
-                    tasksCompleted = true;
-                    showSatisfactionQuestion(); // Show question when all tasks are checked
+            tasksData[emotion].forEach((task, index) => {
+                const taskItem = document.createElement("div");
+                taskItem.classList.add("task-item");
+                taskItem.innerHTML = `${task} <input type="checkbox" class="task-checkbox">`;
+                if (index < 5) {
+                    tasksLeft.appendChild(taskItem);
                 } else {
-                    tasksCompleted = false;
-                    hideSatisfactionQuestion(); // Hide question when tasks aren't 100% complete
+                    tasksRight.appendChild(taskItem);
                 }
-                updateProgressCircle(); // Update progress circle on task completion
             });
-        });
 
-        // Function to update progress circle
-        function updateProgressCircle() {
-            const tasks = document.querySelectorAll(".tasks-container input[type='checkbox']");
-            const totalTasks = tasks.length;
-            const completedTasks = Array.from(tasks).filter(task => task.checked).length;
-
-            const progress = (completedTasks / totalTasks) * 100;
-
-            const circle = document.querySelector(".progress-circle");
-            const progressText = document.querySelector(".progress-circle-text");
-
-            // Update the circular progress
-            circle.style.background = `conic-gradient(#4caf50 ${progress}%, #d9d9d9 ${progress}%)`;
-            progressText.innerHTML = `${Math.round(progress)}%`;
+            updateProgressCircle(); // Update the progress bar initially
+            checkTasksCompletion(); // Check if all tasks are checked
+        } else {
+            // Hide tasks and progress circle if Cancel is clicked
+            tasksSection.style.display = 'none';
+            progressCircleContainer.style.display = 'none';
+            alert("No worries! Let's keep going with other things to explore!");
         }
-
-        // Function to show the satisfaction question
-        function showSatisfactionQuestion() {
-            const satisfactionQuestionContainer = document.querySelector('.satisfaction-question-container');
-            satisfactionQuestionContainer.style.display = 'flex';
-        }
-
-        // Function to hide the satisfaction question
-        function hideSatisfactionQuestion() {
-            const satisfactionQuestionContainer = document.querySelector('.satisfaction-question-container');
-            satisfactionQuestionContainer.style.display = 'none';
-        }
-
-        // Handle satisfaction responses
-        const yesButton = document.getElementById('yes-btn');
-        const noButton = document.getElementById('no-btn');
-        const satisfactionResponseElement = document.getElementById('satisfaction-response');
-        const satisfactionQuestionContainer = document.querySelector('.satisfaction-question-container');
-
-        yesButton.addEventListener('click', function () {
-            satisfactionResponseElement.textContent = 'We are glad you are satisfied!';
-            hideSatisfactionQuestion();
-        });
-
-        noButton.addEventListener('click', function () {
-            satisfactionResponseElement.textContent = 'Sorry to hear that. Let us know how we can improve!';
-            hideSatisfactionQuestion();
-        });
     });
 });
+
+// Update progress when task checkboxes are changed
+tasksSection.addEventListener('change', (event) => {
+    if (event.target.classList.contains("task-checkbox")) {
+        updateProgressCircle();
+        checkTasksCompletion();
+    }
+});
+
+// Function to update the progress circle
+function updateProgressCircle() {
+    const totalTasks = document.querySelectorAll(".task-checkbox").length;
+    const checkedTasks = Array.from(document.querySelectorAll(".task-checkbox")).filter(checkbox => checkbox.checked).length;
+    const progress = (checkedTasks / totalTasks) * 100;
+    const progressCircle = document.querySelector(".progress-circle");
+    const progressText = document.querySelector(".progress-circle-text");
+
+    progressCircle.style.background = `conic-gradient(#4caf50 ${progress}%, #ddd ${progress}%)`;
+    progressText.textContent = `${Math.round(progress)}%`;
+}
+
+// Function to check if all tasks are checked
+function checkTasksCompletion() {
+    const tasks = document.querySelectorAll('.task-item input[type="checkbox"]');
+    const allChecked = Array.from(tasks).every(task => task.checked);
+
+    // Show satisfaction question if any task is checked in the current category and satisfaction has not been shown yet
+    if (!satisfactionShown && Array.from(tasks).some(task => task.checked)) {
+        document.getElementById('satisfaction-question').style.display = 'block';
+    }
+
+    if (allChecked) {
+        document.getElementById('satisfaction-question').style.display = 'block'; // Keep the question if all are checked
+    }
+}
+
+// Function to handle "Yes" button click
+document.getElementById('yes-button').addEventListener('click', () => {
+    const progressCircle = document.querySelector(".progress-circle");
+    const progressText = document.querySelector(".progress-circle-text");
+
+    // Set progress to 100%
+    progressCircle.style.background = `conic-gradient(#4caf50 100%, #ddd 0%)`;
+    progressText.textContent = `100%`;
+
+    alert('Great job! Keep it up! 🎉');
+    document.getElementById('satisfaction-question').style.display = 'none'; // Hide question after "Yes"
+    satisfactionShown = true; // Mark the satisfaction question as shown for the current emotion
+});
+
+// Function to handle "No" button click
+document.getElementById('no-button').addEventListener('click', () => {
+    alert('No worries! Keep going, you can do it! 💪');
+    document.getElementById('satisfaction-question').style.display = 'none'; // Hide question after "No"
+    satisfactionShown = false; // Mark the satisfaction question as shown for the current emotion
+});
+
+// Function to update stress advice
+function updateStressAdvice() {
+    const stressLevel = stressLevelSlider.value;
+    stressValue.textContent = stressLevel;
+
+    if (stressLevel <= 3) {
+        stressAdvice.textContent = "STRESS ADVICE - You are feeling relaxed. Keep it up!";
+    } else if (stressLevel <= 7) {
+        stressAdvice.textContent = "STRESS ADVICE - You're a bit stressed. Try some relaxation techniques.";
+    } else {
+        stressAdvice.textContent = "STRESS ADVICE - You're feeling stressed. Consider taking a break.";
+    }
+}
+
+// Function to update energy advice
+function updateEnergyAdvice() {
+    const energyLevel = energyLevelSlider.value;
+    energyValue.textContent = energyLevel;
+
+    if (energyLevel <= 3) {
+        energyAdvice.textContent = "ENERGY ADVICE - You have low energy. Consider resting.";
+    } else if (energyLevel <= 7) {
+        energyAdvice.textContent = "ENERGY ADVICE - You're feeling somewhat energetic. Keep going!";
+    } else {
+        energyAdvice.textContent = "ENERGY ADVICE - You're full of energy! Use it wisely.";
+    }
+}

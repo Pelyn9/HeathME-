@@ -35,73 +35,89 @@ body, html {
     font-size: 20px;
 }
 
-/* Stress & Energy Tracker */
-.stress-energy-tracker-container {
-    text-align: center;
-    margin: 20px auto;
-    background-color: rgb(184, 181, 179);
-    padding: 15px;
-    border-radius: 10px;
-    width: 70%;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.slider-container {
-    margin: 20px 0;
-}
-
-.slider-container label {
-    display: block;
-    font-size: 16px;
-    margin-bottom: 5px;
-}
-
-input[type="range"] {
-    width: 80%;
-    margin: 10px 0;
-}
-
-.advice-container p {
-    font-size: 14px;
-    font-weight: bold;
-    margin-top: 15px;
-    color: #333;
-}
-
-/* "How do you feel today?" title */
+/* Center the "How do you feel today?" title */
 .feel-today-title {
     text-align: center;
+    font-size: 36px; /* Increased font size for emphasis */
     margin-top: 40px;
-    font-size: 24px;
-    font-weight: bold;
+    font-weight: 700; /* Stronger weight */
+    color: #000000; /* More vibrant color */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Text shadow for depth */
+    padding: 10px 20px; /* Add padding for better spacing */
+    border-radius: 10px; /* Rounded corners */
+    background-color: #f0f0f0; /* Light background color */
+    display: inline-block; /* To fit the content */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
+    transition: all 0.3s ease-in-out;
 }
 
-/* Emotion Boxes */
+
+
+/* Emotion Section Container */
+.emotion-section {
+    background-color: #f8f8f8; /* White background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    padding: 40px 20px; /* Padding for spacing inside the container */
+    margin: 40px auto; /* Center the container */
+    width: 100%; /* Ensure it takes full width */
+    max-width: 1000px; /* Limit the maximum width */
+    text-align: center; /* Center-align the content */
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Adjust emotion boxes to fit within the container */
 .emotion-boxes {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly; /* Evenly space the boxes */
     align-items: center;
-    gap: 30px;
-    margin-top: 30px;
+    flex-wrap: wrap; /* Allow wrapping for the boxes */
+    margin-top: 20px;
+    gap: 20px; /* Reduced gap between the boxes */
 }
 
-.emotion-box {
-    width: 160px;
-    height: 160px;
-    border-radius: 12px;
-    background-color: #766ec2;
+/* Emotion box container styles */
+.emotion-box-container {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 30px;
+    justify-content: space-between; /* Distribute evenly across the row */
+    gap: 20px; /* Adds space between the boxes */
+    margin-top: 20px; /* Adds space above the emotion boxes */
+    flex-wrap: nowrap;  /* Prevents the boxes from wrapping to a new row */
+}
+
+/* Individual emotion box styles */
+.emotion-box {
+    width: 100px;  /* Set the width to 150px */
+    height: 100px;  /* Set the height to 150px */
+    padding: 25px;  /* Adjust padding for spacing inside the box */
+    font-size: 40px;  /* Adjust font size for readability */
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    background-color: #6a4cdb;  /* Emotion box background color */
+    color: white;
+    border-radius: 10px;  /* Slightly rounded corners */
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    text-align: center;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .emotion-box:hover {
-    background-color: #8a62cc;
-    transform: scale(1.1);
+    transform: scale(1.05);  /* Slightly enlarge the box on hover */
 }
+
+/* Selected emotion box */
+.emotion-box.selected {
+    background-color: #8a62cc;  /* Selected emotion box background */
+    transform: scale(1.05);  /* Slightly enlarge the box when selected */
+}
+
+
+
+
 
 .emotion-box span {
     margin-top: 10px;
@@ -109,72 +125,11 @@ input[type="range"] {
     color: #fff;
 }
 
-/* Tasks Section */
-.tasks-section {
-    margin: 40px auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 40px;
-}
-
-/* Tasks Container */
-.tasks-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 250px;
-    background-color: peachpuff;
-    padding: 20px;
-    border-radius: 10px;
-}
-
-.task-item {
-    font-size: 16px;
-    margin: 5px 0;
-}
-
-/* Satisfaction Question */
-.satisfaction-question-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: none;
-    justify-content: center;
-    align-items: center;
-}
-
-.satisfaction-question {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    text-align: center;
-    width: 300px;
-}
-
-button {
-    padding: 10px 20px;
-    margin: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-button:hover {
-    background-color: #4caf50;
-    color: white;
-}
-
-
-/* Circular Progress Styles */
+/* Progress Circle */
 .progress-circle-container {
     position: relative;
-    width: 120px;
-    height: 120px;
+    width: 150px;
+    height: 150px;
     margin: 20px auto;
 }
 
@@ -185,7 +140,7 @@ button:hover {
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    border: 10px solid #d9d9d9;
+    border: 10px solid peachpuff;
     z-index: 1;
 }
 
@@ -198,17 +153,160 @@ button:hover {
     border-radius: 50%;
     border: 10px solid transparent;
     background-color: transparent;
-    transform: rotate(-90deg);
-    z-index: 2;
     transition: background-color 0.3s ease;
 }
 
 .progress-circle-text {
     position: absolute;
+    top: 55%;
+    left: 55%;
+    transform: translate(-50%, -50%); /* This should center the text */
+    font-size: 24px;
+    font-weight: bold;
+    color: #000;
+    text-shadow: 1px 1px 2px black;
+    z-index: 3;
+    line-height: 1.2; /* Adjust this to vertically align text */
+}
+
+/* Tasks Section */
+.tasks-section {
+    margin: 40px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.tasks-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Add space between left and right task containers */
+    width: 800px; /* Matches width of stress-energy tracker */
+    background-color: peachpuff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex-direction: row;
+    align-items: center;
+}
+
+.tasks-left, .tasks-right {
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+}
+
+.task-item {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.tasks-caption {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #000;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Slight shadow for emphasis */
+}
+
+input[type="checkbox"] {
+    cursor: pointer;
+}
+
+/* Stress & Energy Tracker */
+.stress-energy-tracker-wrapper {
+    background-color: #766ec2; /* Same color as emotion boxes */
+    padding: 30px;
+    border-radius: 10px;
+    margin-top: 40px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 800px; /* Matches the width of the tasks container */
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    text-align: center;
+}
+
+.stress-energy-tracker-container,
+.stress-energy-tracker-container * {
+    text-shadow: 1px 1px 2px black;
+}
+
+.slider-container label,
+.slider-container span,
+.advice-container p,
+.stress-energy-tracker-container h2 {
+    text-shadow: 1px 1px 2px black;
+}
+
+input[type="range"] {
+    width: 300px;
+}
+
+.advice-container p {
+    font-size: 18px;
+}
+
+/* Satisfaction Question Popup */
+.satisfaction-question-container {
+    display: none; /* Hidden by default */
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 18px;
-    font-weight: bold;
-    z-index: 3;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    text-align: center;
+}
+
+.satisfaction-question-container h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.satisfaction-question button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+.satisfaction-question button:hover {
+    background-color: #45a049;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.bottom-message {
+    background-color: #d3d3d3; /* Light gray background */
+    padding: 20px;
+    text-align: center;
+    font-size: 14px; /* Small font size */
+    color: #333; /* Dark text color for contrast */
+    margin-top: 40px;
+    border-radius: 10px; /* Rounded corners */
 }

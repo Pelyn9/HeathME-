@@ -3,25 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile Page</title>
+    <title>Mental Health Tracker</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <section class="hero-section">
-        <header class="header">
-            <a href="../Profile/index.html">
-                <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/14d667f455694d8ae2a1a7fa329fa0229cac34ba60d63c3fcf7e2e30f0751a52?placeholderIfAbsent=true&apiKey=e6e279f9e06842139b3f7c01a7502bdc" alt="Iconography illustration" class="iconography-image" loading="lazy">
+    <!-- Header (do not change this part) -->
+    <header class="header">
+        <div class="left-header">
+            <a href="../Profile/index.html" class="icon-link">
+                <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/14d667f455694d8ae2a1a7fa329fa0229cac34ba60d63c3fcf7e2e30f0751a52?placeholderIfAbsent=true&apiKey=e6e279f9e06842139b3f7c01a7502bdc" 
+                     alt="Iconography illustration" 
+                     class="iconography-image" loading="lazy">
             </a>
-            <nav class="nav-container">
-                <a href="../Home/index.html" class="nav-link">Home</a>
-                <a href="../Contact/index.html" class="contact-link">Support</a>
-            </nav>
-        </header>
-        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/a5e6101198e36fd23386de35e6d749f376536e731010a536578ccd53533fae59?placeholderIfAbsent=true&apiKey=e6e279f9e06842139b3f7c01a7502bdc" alt="User profile picture" class="profile-picture" />
-        <h1 class="profile-name">NAME</h1>
-        <button class="logout-button" onclick="window.location.href='../Login/index.html';">Log out</button>
+            <a href="../Home/index.html" class="nav-link">Home</a>
+            <a href="../Contact/index.html" class="contact-link">Support</a>
+            <a href="https://cdn.botpress.cloud/webchat/v2.2/shareable.html?configUrl=https://files.bpcontent.cloud/2024/12/01/02/20241201022934-Z6K7CN2U.json" class="nav-link">HealthMe</a>
+        </div>
+    </header>
+
+    <!-- Profile Section -->
+    <section class="profile-section">
+        <h2>Your Profile</h2>
+
+        <!-- Profile Picture -->
+        <div class="profile-picture">
+            <input type="file" id="profile-picture-upload" accept="image/*" />
+            <img id="profile-picture" src="Free Simple Modern Circle Design Studio Logo.png" alt="Profile Picture" />
+        </div>
+
+        <!-- Profile Form -->
+        <form id="profile-form">
+            <div class="input-container">
+              <label for="name">NAME:</label>
+              <input type="text" id="name" value="John Doe" readonly />
+            </div>
+          
+            <div class="input-container">
+              <label for="gmail">GMAIL:</label>
+              <input type="email" id="gmail" value="john.doe@gmail.com" readonly />
+            </div>
+          
+            <div class="input-container">
+              <label for="contact-number">CONTACT NUMBER:</label>
+              <input type="text" id="contact-number" value="+1234567890" readonly />
+            </div>
+          
+            <div class="input-container">
+              <label for="address">ADDRESS:</label>
+              <input type="text" id="address" value="123 Main St" readonly />
+            </div>
+          
+            <!-- Action buttons -->
+            <button type="button" id="edit-button">Edit</button>
+            <button type="button" id="save-button" style="display: none;">Save</button>
+          </form>
+
+        <!-- Logout Button -->
+        <a href="../Login/index.html" class="contact-link" id="logout-button">
+            Logout
+        </a>
     </section>
 
+    <script src="script.js"></script>
 </body>
 </html>
