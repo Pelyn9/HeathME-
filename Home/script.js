@@ -135,14 +135,14 @@ document.getElementById('yes-button').addEventListener('click', () => {
     progressCircle.style.background = `conic-gradient(#4caf50 100%, #ddd 0%)`;
     progressText.textContent = `100%`;
 
-    alert('Great job! Keep it up! 🎉');
+    //alert('Great job! Keep it up! 🎉');
     document.getElementById('satisfaction-question').style.display = 'none'; // Hide question after "Yes"
     satisfactionShown = true; // Mark the satisfaction question as shown for the current emotion
 });
 
 // Function to handle "No" button in satisfaction question
 document.getElementById('no-button').addEventListener('click', () => {
-    alert('No worries! Keep going, you can do it! 💪');
+    //alert('No worries! Keep going, you can do it! 💪');
     document.getElementById('satisfaction-question').style.display = 'none'; // Hide question after "No"
     satisfactionShown = false; // Mark the satisfaction question as shown for the current emotion
 });
