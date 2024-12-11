@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>ChangePass</title>
     <link rel="stylesheet" href="styles.css">
     <script type="module" src="script.js" defer></script>
 </head>
@@ -17,24 +17,27 @@
                         <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/73ff847635b56252cd4b557544242b937966c63042d4fc3ef84b738cc2c31f5f?placeholderIfAbsent=true&apiKey=e6e279f9e06842139b3f7c01a7502bdc" alt="Profile image" class="profile-image" />
                     </div>
                     <div class="form-column">
-                        <form class="signup-form" id="signupForm">
-                            <h1 class="form-title">Login</h1>
+                        <form class="signup-form" id="changePassForm">
+                            <h1 class="form-title">Change Password</h1>
                             <label for="email" class="visually-hidden">Email/Username</label>
                             <input type="text" id="email" class="form-input" placeholder="Email/Username" required aria-required="true" />
-                            <label for="password" class="visually-hidden">Password</label>
-                            <input type="password" id="password" class="form-input" placeholder="Password" required aria-required="true" />
-                            <div class="forgot-password-wrapper">
-                                <a href="../ForgetPass/index.html" class="forgot-password-link">Forgot Password?</a>
-                            </div>
+                            
+                            <label for="password" class="visually-hidden">New Password</label>
+                            <input type="password" id="password" class="form-input" placeholder="New Password" required aria-required="true" />
+                            
+                            <label for="repassword" class="visually-hidden">Confirm Password</label>
+                            <input type="password" id="repassword" class="form-input" placeholder="Confirm Password" required aria-required="true" />
+                            
                             <div class="login-link-wrapper">
-                                <p class="login-text">Don't have an account?</p>
-                                <a href="../Signin/index.html" class="login-link">Sign Up</a>
+                                <p class="login-text">Have an account?</p>
+                                <a href="../Login/index.html" class="login-link">Login</a>
                             </div>
+                            
                             <button type="submit" class="signup-button">
-                                Login
+                                Submit
                             </button>
                         </form>
-                        <p id="error-message" style="color: red; display: none;">Please fill in all fields.</p>
+                        <p id="error-message" style="color: red; display: none;">Passwords do not match. Please try again.</p>
                     </div>
                 </div>
             </div>

@@ -99,22 +99,6 @@ body, html {
     font-size: 18px;
 }
 
-.forgot-password-wrapper {
-    text-align: right;
-    margin: 15px 0;
-}
-
-.forgot-password-link {
-    color: #0437f2;
-    font-size: 14px;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.forgot-password-link:hover {
-    color: #002f9e;
-}
-
 .login-link-wrapper {
     display: flex;
     gap: 5px;

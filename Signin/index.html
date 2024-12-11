@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
     <link rel="stylesheet" href="style.css">
+    <script type="module" src="script.js"></script>
 </head>
 <body>
     <main class="signup-container">
@@ -19,7 +20,7 @@
                         <form class="signup-form" id="signupForm">
                             <h1 class="form-title">SIGN UP</h1>
                             <label for="email" class="visually-hidden">Email/Username</label>
-                            <input type="text" id="email" class="form-input" placeholder="Email/Username" required aria-required="true" />
+                            <input type="email" id="email" class="form-input" placeholder="Email/Username" required aria-required="true" />
                             <label for="password" class="visually-hidden">Password</label>
                             <input type="password" id="password" class="form-input" placeholder="Password" required aria-required="true" />
                             <label for="repassword" class="visually-hidden">Re-Password</label>
@@ -28,7 +29,7 @@
                                 <p class="login-text">Have an account?</p>
                                 <a href="../Login/index.html" class="login-link">Login</a>
                             </div>
-                            <button type="button" class="signup-button" onclick="validateSignupForm()">
+                            <button type="submit" class="signup-button">
                                 Sign Up
                             </button>
                         </form>
@@ -38,24 +39,5 @@
             </div>
         </div>
     </main>
-
-    <script>
-        function validateSignupForm() {
-            var email = document.getElementById('email').value;
-            var password = document.getElementById('password').value;
-            var repassword = document.getElementById('repassword').value;
-            var errorMessage = document.getElementById('error-message');
-            
-            // Check if all fields are filled
-            if (email === "" || password === "" || repassword === "") {
-                errorMessage.style.display = 'block'; // Show error message for missing fields
-            } else if (password !== repassword) {
-                errorMessage.style.display = 'block'; // Show error message if passwords don't match
-            } else {
-                errorMessage.style.display = 'none'; // Hide error message
-                window.location.href = '../Login/index.html'; // Navigate to login page if form is valid
-            }
-        }
-    </script>
 </body>
 </html>
